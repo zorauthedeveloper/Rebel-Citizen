@@ -1,0 +1,41 @@
+[gd_scene load_steps=6 format=3 uid="uid://diyms3c76ebbj"]
+
+[ext_resource type="Script" path="res://Scripts/player.gd" id="1_weh5l"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_gf8b4"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_54job"]
+radius = 0.4
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_omegj"]
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_fe0fs"]
+height = 1.0
+
+[node name="Character" type="CharacterBody3D" groups=["Player"]]
+collision_layer = 2
+collision_mask = 2
+script = ExtResource("1_weh5l")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+shape = SubResource("CapsuleShape3D_gf8b4")
+
+[node name="LookAt" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.982692, 0.579937, -2.89303)
+
+[node name="TopCast" type="ShapeCast3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+shape = SubResource("SphereShape3D_54job")
+target_position = Vector3(0, 0.5, 0)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+layers = 2
+mesh = SubResource("CapsuleMesh_omegj")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="MeshInstance3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.3, -0.063)
+layers = 2
+mesh = SubResource("CapsuleMesh_fe0fs")
+skeleton = NodePath("../..")
