@@ -9,6 +9,7 @@ extends CharacterBody3D
 
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
+var jgravity = 0.01
 var lastLookAtDirection : Vector3
 var stand_height : float
 @onready var lookat = get_tree().get_nodes_in_group("CameraController")[0].get_node("LookAt")
@@ -21,7 +22,7 @@ func _physics_process(delta):
 	var move_speed = speed
 	# Add gravity.
 	if not is_on_floor():
-		velocity.y -= gravity * delta
+		velocity.y -= gravity * delta * jgravity
 		# Handle jump.
 	else:
 		if Input.is_action_just_pressed("jump") and is_on_floor():
