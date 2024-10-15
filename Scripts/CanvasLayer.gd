@@ -7,17 +7,21 @@ extends CanvasLayer
 @onready var levelbackgroundleft = $Control/LevelHUD/LevelContainerLeft/LevelController/Panel/Panel
 @onready var levelbackgroundright = $Control/LevelHUD/LevelContainerRight
 @onready var healthtext = $Control/HealthHUD/HealthContainer/HealthBar/HealthText
-
+@onready var staminabar = $Control/HealthHUD/StaminaContainer/StaminaBar
 var lastsize : Vector2
 @onready var level : float = Global.level
 var leveldown : float
 @onready var health = Global.health
+@onready var stamina = Global.stamina
+var waittime = 0.1
 var healthdown
 var maxhealth = 250
+var maxstamina = 100
 var currenthealth
+var currentstamina
 var healthbar_current_value : float = 0  # For smooth health bar transitions
 var levelbar_current_value : float = 0  # For smooth level bar transitions
-
+var staminabar_current_value : float = 0  # For smooth stamina bar transitions
 # Variables for the new leveling system
 var base_exp = 200  # Base experience multiplier for the formula
 var experience : float = 0  # Current experience
@@ -33,6 +37,25 @@ func _ready():
 # Function to calculate required experience for the next level using the formula 200(1/2z^2 - 1/2z + 1)
 func exp_for_next_level(level):
 	return base_exp * ((0.5 * level * level) - (0.5 * level) + 1)
+
+func update_stamina(stamina):
+	if stamina > maxstamina:
+		stamina = maxstamina
+	if stamina < 0:
+		stamina = 0
+	currentstamina = float(stamina) / float(maxstamina) * 100
+	#staminabar_current_value = lerp(staminabar_current_value, currentstamina, 0.1)
+	staminabar.value = currentstamina #staminabar_current_value
+
+	# Sync stamina with the selected character's stamina
+	if Global.selectedcharacter == 1:
+		Global.stamina1 = stamina
+	elif Global.selectedcharacter == 2:
+		Global.stamina2 = stamina
+	elif Global.selectedcharacter == 3:
+		Global.stamina3 = stamina
+	elif Global.selectedcharacter == 4:
+		Global.stamina4 = stamina
 
 func update_healthbar(health):
 	if health > maxhealth:
@@ -105,15 +128,17 @@ func update_level():
 		Global.leveldown1 = leveldown
 
 func _process(delta):
+	stamina = Global.stamina
+	health = Global.health
 	# Increase experience over time (for testing)
 	experience += 200 * delta  # Gain experience per second
 	# Test health increase
-	health += 0.01
-	
+	health = Global.health + 0.01 
+	stamina = Global.stamina + 0.1
 	# Update level and health display
 	update_level()
 	update_healthbar(health)
-	
+	update_stamina(stamina)
 	if leveltext.size != lastsize:
 		levelbackgroundleft.size = leveltext.size + Vector2(20, 68)
 		lastsize = leveltext.size

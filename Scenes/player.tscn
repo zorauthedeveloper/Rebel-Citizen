@@ -22,7 +22,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 shape = SubResource("CapsuleShape3D_gf8b4")
 
 [node name="LookAt" type="Node3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.982692, 0.579937, -2.89303)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.983, 0.58, -5)
 
 [node name="TopCast" type="ShapeCast3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
