@@ -1,6 +1,6 @@
 [gd_scene load_steps=6 format=3 uid="uid://b4opjllgffad7"]
 
-[ext_resource type="Script" path="res://Interactables/Button/button.gd" id="1_s5nfm"]
+[ext_resource type="Script" path="res://Interactables/HealthButton/button.gd" id="1_s5nfm"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_g1u1g"]
 resource_name = "button"

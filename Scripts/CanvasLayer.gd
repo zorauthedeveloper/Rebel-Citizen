@@ -15,7 +15,7 @@ var leveldown : float
 @onready var stamina = Global.stamina
 var waittime = 0.1
 var healthdown
-var maxhealth = 250
+@onready var maxhealth = Global.maxhealth
 var maxstamina = 100
 var currenthealth
 var currentstamina
@@ -58,8 +58,9 @@ func update_stamina(stamina):
 		Global.stamina4 = stamina
 
 func update_healthbar(health):
+	maxhealth = Global.maxhealth
 	if health > maxhealth:
-		health= maxhealth
+		health = maxhealth
 	if health < 0:
 		health = 0
 	healthdown = floor(health)

@@ -1,4 +1,4 @@
-[gd_scene load_steps=40 format=3 uid="uid://bay582i6jacqs"]
+[gd_scene load_steps=41 format=3 uid="uid://bay582i6jacqs"]
 
 [ext_resource type="Script" path="res://Scripts/game.gd" id="1_04lxd"]
 [ext_resource type="PackedScene" uid="uid://diyms3c76ebbj" path="res://Scenes/player.tscn" id="1_dl375"]
@@ -7,7 +7,8 @@
 [ext_resource type="FontFile" uid="uid://b1yjsegak4ldg" path="res://Fonts/Exo 2/Exo2-ExtraBold.ttf" id="4_bh3tv"]
 [ext_resource type="PackedScene" uid="uid://c17i4yxirxw7u" path="res://Scenes/InteractRay.tscn" id="4_y3a36"]
 [ext_resource type="FontFile" uid="uid://dbmry6qipi6r8" path="res://Fonts/Exo 2/Exo2-SemiBold.ttf" id="5_bnxfv"]
-[ext_resource type="PackedScene" uid="uid://b4opjllgffad7" path="res://Interactables/Button/Button.tscn" id="8_qm6j8"]
+[ext_resource type="PackedScene" uid="uid://b4opjllgffad7" path="res://Interactables/HealthButton/Button.tscn" id="8_qm6j8"]
+[ext_resource type="PackedScene" uid="uid://t0ru5xxqnuup" path="res://Interactables/Teleport button/Button3.tscn" id="9_0rind"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_2fkc6"]
 sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
@@ -809,3 +810,14 @@ mesh = SubResource("BoxMesh_cm103")
 [node name="Button" parent="." instance=ExtResource("8_qm6j8")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.04661, -2.38419e-07, 3.16534)
 prompt_message = "Secret stamina button"
+
+[node name="Button2" parent="." instance=ExtResource("8_qm6j8")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.03607, 0, 4.2091)
+prompt_message = "Secret health buttonw"
+
+[node name="Button3" parent="." instance=ExtResource("9_0rind")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.63377, 0, -25.4616)
+prompt_message = "Teleport to top ramp"
+
+[node name="Node3D" type="Node3D" parent="."]
+transform = Transform3D(100, 0, 0, 0, 1, 0, 0, 0, 100, -4, 13, -20)

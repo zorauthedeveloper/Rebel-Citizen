@@ -125,8 +125,7 @@ func _physics_process(delta):
 	if old_vel < 0:
 		var diff = velocity.y - old_vel
 		if diff > 15:
-			hurt()
-			print("Hurt")
+			hurt(diff)
 	old_vel = velocity.y
 func crouch(delta : float, reverse = false):
 	var target_height : float = crouch_height if not reverse else stand_height
@@ -142,10 +141,10 @@ func crouch(delta : float, reverse = false):
 		Global.headheight = lerp(Global.headheight, target_height - 0.5, crouch_transition * delta)
 	else:
 		Global.headheight = lerp(Global.headheight, target_height, crouch_transition * delta)
-func hurt():
+func hurt(diffa):
 	hurt_overlay.modulate = Color.WHITE
 	if hurt_tween:
 		hurt_tween.kill()
 	hurt_tween = create_tween()
 	hurt_tween.tween_property(hurt_overlay, "modulate", Color.TRANSPARENT, 0.5)
-	Global.healthadd(-20)
+	Global.healthadd(-20 * (diffa)/10)
