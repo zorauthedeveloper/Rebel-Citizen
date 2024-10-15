@@ -59,7 +59,7 @@ func update_stamina(stamina):
 
 func update_healthbar(health):
 	if health > maxhealth:
-		health = maxhealth
+		health= maxhealth
 	if health < 0:
 		health = 0
 	healthdown = floor(health)

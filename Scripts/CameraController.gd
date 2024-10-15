@@ -12,12 +12,14 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta):
-	global_position = player.global_position + Vector3(0,Global.headheight,0)
-	
+	var headposition = player.global_position + Vector3(0,Global.headheight,0)
+	global_position = headposition
 	pass
+	
 func _input(event):
 	if event is InputEventMouseMotion and !Input.is_action_pressed("moveoff"):
 		var tempRot = rotation.x - event.relative.y / 1000 * sens
 		rotation.y -= event.relative.x / 1000 * sens
 		tempRot = clamp(tempRot, -1, 0.625)
 		rotation.x = tempRot
+

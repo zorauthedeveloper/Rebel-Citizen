@@ -32,7 +32,7 @@ var is_crouching = false
 @onready var collision_shape = $CollisionShape3D
 @onready var top_cast = $TopCast
 @onready var avatar = $MeshInstance3D
-@onready var hurt_overlay = $HurtOverlay
+@onready var hurt_overlay = $HBoxContainer/HurtOverlay
 
 
 func _ready():
@@ -127,7 +127,6 @@ func _physics_process(delta):
 		if diff > 15:
 			hurt()
 			print("Hurt")
-			crouch(delta)
 	old_vel = velocity.y
 func crouch(delta : float, reverse = false):
 	var target_height : float = crouch_height if not reverse else stand_height

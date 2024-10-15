@@ -41,12 +41,15 @@ layers = 2
 mesh = SubResource("CapsuleMesh_fe0fs")
 skeleton = NodePath("../..")
 
-[node name="HurtOverlay" type="TextureRect" parent="."]
-modulate = Color(1, 1, 1, 0)
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_right = -1880.0
-offset_bottom = -1040.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="HurtOverlay" type="TextureRect" parent="HBoxContainer"]
+modulate = Color(1, 1, 1, 0)
+layout_mode = 2
 texture = ExtResource("2_sctpp")
 metadata/_edit_use_anchors_ = true

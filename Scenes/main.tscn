@@ -1,11 +1,13 @@
-[gd_scene load_steps=38 format=3 uid="uid://bay582i6jacqs"]
+[gd_scene load_steps=40 format=3 uid="uid://bay582i6jacqs"]
 
 [ext_resource type="Script" path="res://Scripts/game.gd" id="1_04lxd"]
 [ext_resource type="PackedScene" uid="uid://diyms3c76ebbj" path="res://Scenes/player.tscn" id="1_dl375"]
 [ext_resource type="Script" path="res://Scripts/CameraController.gd" id="2_yky8w"]
 [ext_resource type="Script" path="res://Scripts/CanvasLayer.gd" id="3_xsvof"]
 [ext_resource type="FontFile" uid="uid://b1yjsegak4ldg" path="res://Fonts/Exo 2/Exo2-ExtraBold.ttf" id="4_bh3tv"]
+[ext_resource type="PackedScene" uid="uid://c17i4yxirxw7u" path="res://Scenes/InteractRay.tscn" id="4_y3a36"]
 [ext_resource type="FontFile" uid="uid://dbmry6qipi6r8" path="res://Fonts/Exo 2/Exo2-SemiBold.ttf" id="5_bnxfv"]
+[ext_resource type="PackedScene" uid="uid://b4opjllgffad7" path="res://Interactables/Button/Button.tscn" id="8_qm6j8"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_2fkc6"]
 sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
@@ -253,6 +255,9 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 5)
 
 [node name="LookAt" type="Node3D" parent="CameraController"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -5)
+
+[node name="InteractRay" parent="CameraController" instance=ExtResource("4_y3a36")]
+target_position = Vector3(0, 0, -3)
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 script = ExtResource("3_xsvof")
@@ -800,3 +805,7 @@ use_collision = true
 collision_layer = 3
 collision_mask = 3
 mesh = SubResource("BoxMesh_cm103")
+
+[node name="Button" parent="." instance=ExtResource("8_qm6j8")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.04661, -2.38419e-07, 3.16534)
+prompt_message = "Secret stamina button"
