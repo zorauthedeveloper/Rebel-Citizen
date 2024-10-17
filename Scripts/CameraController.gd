@@ -17,7 +17,7 @@ func _process(_delta):
 	pass
 	
 func _input(event):
-	if event is InputEventMouseMotion and !Input.is_action_pressed("moveoff"):
+	if event is InputEventMouseMotion and !Input.is_action_pressed("moveoff") and !Global.menuopened:
 		var tempRot = rotation.x - event.relative.y / 1000 * sens
 		rotation.y -= event.relative.x / 1000 * sens
 		tempRot = clamp(tempRot, -1, 0.625)

@@ -36,6 +36,12 @@ extends Node
 @onready var stamina2 = 100
 @onready var stamina3 = 100
 @onready var stamina4 = 100
+# Stamina vars
+@onready var maxstamina = 100 + ((leveldown)/250)*200 
+@onready var maxstamina1 = 100 + ((leveldown1)/250)*200 
+@onready var maxstamina2 = 100 + ((leveldown2)/250)*200 
+@onready var maxstamina3 = 100 + ((leveldown3)/250)*200 
+@onready var maxstamina4 = 100 + ((leveldown4)/250)*200 
 # Mana vars
 @onready var mana = 100
 @onready var mana1 = 100
@@ -43,6 +49,8 @@ extends Node
 @onready var mana3 = 100
 @onready var mana4 = 100
 
+var regenerate = true
+var menuopened = false
 func _process(_delta):
 	globallevel = (level1 + level2 + level3 + level4) / 4
 	globalleveldown = floor((leveldown1 + leveldown2 + leveldown3 + leveldown4) / 4)
@@ -51,6 +59,11 @@ func _process(_delta):
 	maxhealth2 = 250 + 250 * (leveldown2)
 	maxhealth3 = 250 + 250 * (leveldown3)
 	maxhealth4 = 250 + 250 * (leveldown4)
+	maxstamina = 100 + ((leveldown)/250)*200 
+	maxstamina1 = 100 + ((leveldown1)/250)*200 
+	maxstamina2 = 100 + ((leveldown2)/250)*200 
+	maxstamina3 = 100 + ((leveldown3)/250)*200 
+	maxstamina4 = 100 + ((leveldown4)/250)*200 
 	if selectedcharacter == 1:
 		health = health1
 		stamina = stamina1
@@ -95,7 +108,6 @@ func staminaadd(staminaamount):
 		Global.stamina3 += staminaamount
 	elif Global.selectedcharacter == 4:
 		Global.stamina4 += staminaamount
-		
 func healthadd(healthamount):
 	if Global.selectedcharacter == 1:
 		Global.health1 += healthamount
@@ -105,6 +117,15 @@ func healthadd(healthamount):
 		Global.health3 += healthamount
 	elif Global.selectedcharacter == 4:
 		Global.health4 += healthamount
+func healthset(healthamount):
+	if Global.selectedcharacter == 1:
+		Global.health1 = healthamount
+	elif Global.selectedcharacter == 2:
+		Global.health2 = healthamount
+	elif Global.selectedcharacter == 3:
+		Global.health3 = healthamount
+	elif Global.selectedcharacter == 4:
+		Global.health4 = healthamount
 func manaadd(manaamount):
 	if Global.selectedcharacter == 1:
 		Global.mana1 += manaamount
@@ -114,3 +135,23 @@ func manaadd(manaamount):
 		Global.mana3 += manaamount
 	elif Global.selectedcharacter == 4:
 		Global.mana4 += manaamount
+func maxhealthfunc():
+	if Global.selectedcharacter == 1:
+		Global.maxhealth = maxhealth1
+	elif Global.selectedcharacter == 2:
+		Global.maxhealth = maxhealth2
+	elif Global.selectedcharacter == 3:
+		Global.maxhealth = maxhealth3
+	elif Global.selectedcharacter == 4:
+		Global.maxhealth = maxhealth
+	return maxhealth
+func maxstaminafunc():
+	if Global.selectedcharacter == 1:
+		Global.maxstamina = maxstamina
+	elif Global.selectedcharacter == 2:
+		Global.maxstamina = maxstamina
+	elif Global.selectedcharacter == 3:
+		Global.maxstamina = maxstamina
+	elif Global.selectedcharacter == 4:
+		Global.maxstamina = maxstamina
+	return maxstamina

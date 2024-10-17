@@ -1,6 +1,6 @@
 extends Interactable
 var x = 0
-
+@export var stamina_amount := 20
 func interact(_body):
-	x += 1
-	Global.staminaadd(10)
+	Global.staminaadd(stamina_amount)
+	

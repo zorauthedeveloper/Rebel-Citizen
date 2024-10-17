@@ -1,4 +1,4 @@
-[gd_scene load_steps=41 format=3 uid="uid://bay582i6jacqs"]
+[gd_scene load_steps=44 format=3 uid="uid://bay582i6jacqs"]
 
 [ext_resource type="Script" path="res://Scripts/game.gd" id="1_04lxd"]
 [ext_resource type="PackedScene" uid="uid://diyms3c76ebbj" path="res://Scenes/player.tscn" id="1_dl375"]
@@ -7,6 +7,8 @@
 [ext_resource type="FontFile" uid="uid://b1yjsegak4ldg" path="res://Fonts/Exo 2/Exo2-ExtraBold.ttf" id="4_bh3tv"]
 [ext_resource type="PackedScene" uid="uid://c17i4yxirxw7u" path="res://Scenes/InteractRay.tscn" id="4_y3a36"]
 [ext_resource type="FontFile" uid="uid://dbmry6qipi6r8" path="res://Fonts/Exo 2/Exo2-SemiBold.ttf" id="5_bnxfv"]
+[ext_resource type="StyleBox" uid="uid://ng6fvpouhfr3" path="res://Materials/invisbutton.tres" id="7_g5mw8"]
+[ext_resource type="PackedScene" uid="uid://cxq3q5swf51ny" path="res://Interactables/StaminaButton/Button2.tscn" id="8_8d4cn"]
 [ext_resource type="PackedScene" uid="uid://b4opjllgffad7" path="res://Interactables/HealthButton/Button.tscn" id="8_qm6j8"]
 [ext_resource type="PackedScene" uid="uid://t0ru5xxqnuup" path="res://Interactables/Teleport button/Button3.tscn" id="9_0rind"]
 
@@ -140,6 +142,9 @@ border_color = Color(0.215686, 0.215686, 0.215686, 1)
 font = ExtResource("5_bnxfv")
 font_size = 60
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_y2pv8"]
+bg_color = Color(0.196078, 0.196078, 0.196078, 0.882353)
+
 [sub_resource type="BoxMesh" id="BoxMesh_cm103"]
 size = Vector3(3, 0.1, 3)
 
@@ -175,6 +180,18 @@ collision_layer = 3
 collision_mask = 3
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="MeshInstance3D2/StaticBody3D"]
+shape = SubResource("ConcavePolygonShape3D_vbb4t")
+
+[node name="MeshInstance3D7" type="MeshInstance3D" parent="."]
+transform = Transform3D(-4.37114e-08, -1, 4.37114e-08, 1, -4.37114e-08, -4.37114e-08, 4.37114e-08, 4.37114e-08, 1, -10.7123, 4.76839, 6.71031)
+layers = 3
+mesh = SubResource("BoxMesh_l2hny")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="MeshInstance3D7"]
+collision_layer = 3
+collision_mask = 3
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="MeshInstance3D7/StaticBody3D"]
 shape = SubResource("ConcavePolygonShape3D_vbb4t")
 
 [node name="MeshInstance3D4" type="MeshInstance3D" parent="."]
@@ -578,18 +595,15 @@ layout_mode = 0
 offset_right = 103.0
 offset_bottom = 103.0
 
-[node name="MenuButtonController" type="Control" parent="CanvasLayer/Control/MenuHUD"]
+[node name="MenuButtonController" type="Control" parent="CanvasLayer/Control/MenuHUD/MenuContainer"]
 layout_mode = 2
+
+[node name="Back" type="Control" parent="CanvasLayer/Control/MenuHUD/MenuContainer/MenuButtonController"]
 anchors_preset = 0
 offset_right = 103.0
 offset_bottom = 103.0
 
-[node name="Back" type="Control" parent="CanvasLayer/Control/MenuHUD/MenuButtonController"]
-anchors_preset = 0
-offset_right = 103.0
-offset_bottom = 103.0
-
-[node name="Panel" type="Panel" parent="CanvasLayer/Control/MenuHUD/MenuButtonController/Back"]
+[node name="Panel" type="Panel" parent="CanvasLayer/Control/MenuHUD/MenuContainer/MenuButtonController/Back"]
 layout_mode = 0
 offset_left = 29.0
 offset_right = 134.0
@@ -597,26 +611,26 @@ offset_bottom = 41.0
 rotation = 0.785398
 theme_override_styles/panel = SubResource("StyleBoxFlat_r6a0v")
 
-[node name="Panel2" type="Panel" parent="CanvasLayer/Control/MenuHUD/MenuButtonController/Back"]
+[node name="Panel2" type="Panel" parent="CanvasLayer/Control/MenuHUD/MenuContainer/MenuButtonController/Back"]
 layout_mode = 0
 offset_left = 29.0
 offset_right = 103.0
 offset_bottom = 74.0
 theme_override_styles/panel = SubResource("StyleBoxFlat_r6a0v")
 
-[node name="Panel3" type="Panel" parent="CanvasLayer/Control/MenuHUD/MenuButtonController/Back"]
+[node name="Panel3" type="Panel" parent="CanvasLayer/Control/MenuHUD/MenuContainer/MenuButtonController/Back"]
 layout_mode = 0
 offset_top = 29.0
 offset_right = 74.0
 offset_bottom = 103.0
 theme_override_styles/panel = SubResource("StyleBoxFlat_r6a0v")
 
-[node name="Front" type="Control" parent="CanvasLayer/Control/MenuHUD/MenuButtonController"]
+[node name="Front" type="Control" parent="CanvasLayer/Control/MenuHUD/MenuContainer/MenuButtonController"]
 anchors_preset = 0
 offset_right = 103.0
 offset_bottom = 103.0
 
-[node name="Panel4" type="Panel" parent="CanvasLayer/Control/MenuHUD/MenuButtonController/Front"]
+[node name="Panel4" type="Panel" parent="CanvasLayer/Control/MenuHUD/MenuContainer/MenuButtonController/Front"]
 layout_mode = 0
 offset_left = 56.0
 offset_top = 28.0
@@ -626,7 +640,7 @@ rotation = 0.785398
 scale = Vector2(0.7, 0.7)
 theme_override_styles/panel = SubResource("StyleBoxFlat_24ca3")
 
-[node name="Panel5" type="Panel" parent="CanvasLayer/Control/MenuHUD/MenuButtonController/Front"]
+[node name="Panel5" type="Panel" parent="CanvasLayer/Control/MenuHUD/MenuContainer/MenuButtonController/Front"]
 layout_mode = 0
 offset_left = 41.0
 offset_top = 13.0
@@ -635,7 +649,7 @@ offset_bottom = 87.0
 scale = Vector2(0.7, 0.7)
 theme_override_styles/panel = SubResource("StyleBoxFlat_24ca3")
 
-[node name="Panel6" type="Panel" parent="CanvasLayer/Control/MenuHUD/MenuButtonController/Front"]
+[node name="Panel6" type="Panel" parent="CanvasLayer/Control/MenuHUD/MenuContainer/MenuButtonController/Front"]
 layout_mode = 0
 offset_left = 12.0
 offset_top = 42.0
@@ -644,7 +658,7 @@ offset_bottom = 116.0
 scale = Vector2(0.7, 0.7)
 theme_override_styles/panel = SubResource("StyleBoxFlat_24ca3")
 
-[node name="Label" type="Label" parent="CanvasLayer/Control/MenuHUD/MenuButtonController/Front"]
+[node name="Label" type="Label" parent="CanvasLayer/Control/MenuHUD/MenuContainer/MenuButtonController/Front"]
 texture_filter = 2
 layout_mode = 0
 offset_left = 12.0
@@ -655,6 +669,40 @@ theme_override_fonts/font = ExtResource("4_bh3tv")
 text = "Esc"
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="MenuButton1" type="Button" parent="CanvasLayer/Control/MenuHUD/MenuContainer/MenuButtonController"]
+layout_mode = 0
+offset_top = 29.0
+offset_right = 74.0
+offset_bottom = 103.0
+theme_override_styles/normal = ExtResource("7_g5mw8")
+theme_override_styles/hover = ExtResource("7_g5mw8")
+theme_override_styles/pressed = ExtResource("7_g5mw8")
+theme_override_styles/disabled = ExtResource("7_g5mw8")
+theme_override_styles/focus = ExtResource("7_g5mw8")
+
+[node name="MenuButton2" type="Button" parent="CanvasLayer/Control/MenuHUD/MenuContainer/MenuButtonController"]
+layout_mode = 0
+offset_left = 29.0
+offset_right = 103.0
+offset_bottom = 74.0
+theme_override_styles/normal = ExtResource("7_g5mw8")
+theme_override_styles/hover = ExtResource("7_g5mw8")
+theme_override_styles/pressed = ExtResource("7_g5mw8")
+theme_override_styles/disabled = ExtResource("7_g5mw8")
+theme_override_styles/focus = ExtResource("7_g5mw8")
+
+[node name="MenuButton3" type="Button" parent="CanvasLayer/Control/MenuHUD/MenuContainer/MenuButtonController"]
+layout_mode = 0
+offset_left = 29.0
+offset_right = 135.0
+offset_bottom = 40.0
+rotation = 0.785398
+theme_override_styles/normal = ExtResource("7_g5mw8")
+theme_override_styles/hover = ExtResource("7_g5mw8")
+theme_override_styles/pressed = ExtResource("7_g5mw8")
+theme_override_styles/disabled = ExtResource("7_g5mw8")
+theme_override_styles/focus = ExtResource("7_g5mw8")
 
 [node name="LevelHUD" type="Control" parent="CanvasLayer/Control"]
 anchors_preset = 0
@@ -787,6 +835,28 @@ offset_top = 394.0
 offset_right = 2072.0
 offset_bottom = 696.0
 
+[node name="Menu" type="Control" parent="CanvasLayer/Control"]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Panel" type="Panel" parent="CanvasLayer/Control/Menu"]
+modulate = Color(1, 1, 1, 0)
+layout_mode = 0
+offset_left = 240.0
+offset_top = 216.0
+offset_right = 1680.0
+offset_bottom = 864.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_y2pv8")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/Control/Menu"]
+layout_mode = 0
+anchor_left = 6.0
+anchor_top = 5.4
+anchor_right = 42.0
+anchor_bottom = 21.6
+metadata/_edit_use_anchors_ = true
+
 [node name="MeshInstance3D6" type="MeshInstance3D" parent="."]
 transform = Transform3D(-4.37114e-08, 0, -1, -1, -4.37114e-08, 4.37114e-08, -4.37114e-08, 1, 0, -11.0073, 1.49452, -6.13596)
 layers = 3
@@ -807,16 +877,17 @@ collision_layer = 3
 collision_mask = 3
 mesh = SubResource("BoxMesh_cm103")
 
-[node name="Button" parent="." instance=ExtResource("8_qm6j8")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.04661, -2.38419e-07, 3.16534)
+[node name="Button" parent="." instance=ExtResource("8_8d4cn")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8, 0, 3)
 prompt_message = "Secret stamina button"
 
 [node name="Button2" parent="." instance=ExtResource("8_qm6j8")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.03607, 0, 4.2091)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8, 0, 4)
 prompt_message = "Secret health buttonw"
 
 [node name="Button3" parent="." instance=ExtResource("9_0rind")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.63377, 0, -25.4616)
+position1 = Vector3(-4, 13, -20)
 prompt_message = "Teleport to top ramp"
 
 [node name="Node3D" type="Node3D" parent="."]
