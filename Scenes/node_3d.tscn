@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3 uid="uid://brbwoeh68xgv5"]
+
+[ext_resource type="Material" uid="uid://1plyb387wesu" path="res://Shaders/animeshader.tres" id="1_a68lb"]
+
+[sub_resource type="SphereMesh" id="SphereMesh_61qen"]
+
+[node name="Node3D" type="Node3D"]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("SphereMesh_61qen")
+surface_material_override/0 = ExtResource("1_a68lb")
