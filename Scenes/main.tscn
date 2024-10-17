@@ -788,6 +788,7 @@ offset_right = 2072.0
 offset_bottom = 696.0
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 [node name="Menu" type="Control" parent="CanvasLayer/Control"]
 anchors_preset = 0
 offset_right = 40.0
@@ -813,6 +814,8 @@ offset_bottom = 648.0
 size_flags_horizontal = 3
 theme_override_styles/panel = SubResource("StyleBoxFlat_y2pv8")
 
+=======
+>>>>>>> parent of 6f50b2d (Added menu button, added menu, fixed character selection)
 =======
 >>>>>>> parent of 6f50b2d (Added menu button, added menu, fixed character selection)
 [node name="MeshInstance3D6" type="MeshInstance3D" parent="."]

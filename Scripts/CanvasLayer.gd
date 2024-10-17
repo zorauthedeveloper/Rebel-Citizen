@@ -1,7 +1,11 @@
 extends CanvasLayer
 <<<<<<< HEAD
+<<<<<<< HEAD
 var tween : Tween
 @onready var menupanel = $Control/Menu/HBoxContainer/MenuControl/Panel
+=======
+
+>>>>>>> parent of 6f50b2d (Added menu button, added menu, fixed character selection)
 =======
 
 >>>>>>> parent of 6f50b2d (Added menu button, added menu, fixed character selection)
@@ -133,6 +137,7 @@ func update_level():
 	else:
 		Global.leveldown1 = leveldown
 <<<<<<< HEAD
+<<<<<<< HEAD
 func increase_modulate():
 	var modulate_color = menupanel.modulate
 	modulate_color.a = 0.882  # Set alpha to 225 (225/255 = 0.882)
@@ -160,6 +165,9 @@ func menubuttonpressed():
 			menubuttonheld = true  # Set the button held flag
 	else:
 		menubuttonheld = false  # Reset the button held flag when not pressed
+=======
+
+>>>>>>> parent of 6f50b2d (Added menu button, added menu, fixed character selection)
 =======
 
 >>>>>>> parent of 6f50b2d (Added menu button, added menu, fixed character selection)
