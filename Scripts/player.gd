@@ -11,14 +11,13 @@ extends CharacterBody3D
 @export var dash_cooldown = 1.0
 @export var dash_lerp_factor = 0.5  # Lerp factor for dash smoothing
 @export var dash_y_axis_factor = 0.2  # Reduce Y-axis influence during dash
-@export var regenerate_time := 2
+
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var old_vel : float = 0.0
 var hurt_tween : Tween
 var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
 var lastLookAtDirection : Vector3
 var stand_height : float
-
 
 # Dash state
 var is_dashing = false
@@ -119,6 +118,10 @@ func _physics_process(delta):
 	move_and_slide()
 
 	# Capture or release mouse based on the "moveoff" action
+	if !Input.is_action_pressed("moveoff"):
+		Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
+	else:
+		Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
 	if old_vel < 0:
 		var diff = velocity.y - old_vel
 		if diff > 15:
@@ -144,7 +147,4 @@ func hurt(diffa):
 		hurt_tween.kill()
 	hurt_tween = create_tween()
 	hurt_tween.tween_property(hurt_overlay, "modulate", Color.TRANSPARENT, 0.5)
-	Global.healthadd(-20 * (diffa/10) * Global.leveldown)
-	Global.regenerate = false
-	await get_tree().create_timer(regenerate_time).timeout
-	Global.regenerate = true
+	Global.healthadd(-20 * (diffa)/10)

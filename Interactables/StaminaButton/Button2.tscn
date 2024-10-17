@@ -1,6 +1,6 @@
 [gd_scene load_steps=6 format=3 uid="uid://cxq3q5swf51ny"]
 
-[ext_resource type="Script" path="res://Interactables/StaminaButton/button2.gd" id="1_v5tae"]
+[ext_resource type="Script" path="res://Interactables/HealthButton/button.gd" id="1_igq4q"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_g1u1g"]
 resource_name = "button"
@@ -47,7 +47,7 @@ shadow_mesh = SubResource("ArrayMesh_0i6q2")
 size = Vector3(1, 0.5, 1)
 
 [node name="Button" type="StaticBody3D"]
-script = ExtResource("1_v5tae")
+script = ExtResource("1_igq4q")
 
 [node name="MeshInstance" type="MeshInstance3D" parent="."]
 mesh = SubResource("ArrayMesh_7ele1")

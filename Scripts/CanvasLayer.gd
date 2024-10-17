@@ -1,6 +1,10 @@
 extends CanvasLayer
+<<<<<<< HEAD
 var tween : Tween
-@onready var menupanel = $Control/Menu/Panel
+@onready var menupanel = $Control/Menu/HBoxContainer/MenuControl/Panel
+=======
+
+>>>>>>> parent of 6f50b2d (Added menu button, added menu, fixed character selection)
 @onready var container = $Control
 @onready var healthbar = $Control/HealthHUD/HealthContainer/HealthBar
 @onready var levelbar =$Control/LevelHUD/LevelContainerRight/LevelController/Panel2/LevelContainer2/LevelBar
@@ -9,9 +13,6 @@ var tween : Tween
 @onready var levelbackgroundright = $Control/LevelHUD/LevelContainerRight
 @onready var healthtext = $Control/HealthHUD/HealthContainer/HealthBar/HealthText
 @onready var staminabar = $Control/HealthHUD/StaminaContainer/StaminaBar
-@onready var menu_button_1 = $Control/MenuHUD/MenuContainer/MenuButtonController/MenuButton1
-@onready var menu_button_2 = $Control/MenuHUD/MenuContainer/MenuButtonController/MenuButton2
-@onready var menu_button_3 = $Control/MenuHUD/MenuContainer/MenuButtonController/MenuButton3
 var lastsize : Vector2
 @onready var level : float = Global.level
 var leveldown : float
@@ -19,8 +20,8 @@ var leveldown : float
 @onready var stamina = Global.stamina
 var waittime = 0.1
 var healthdown
-@onready var maxhealth = Global.maxhealthfunc() #Global.maxhealth
-var maxstamina = Global.maxstaminafunc()
+@onready var maxhealth = Global.maxhealth
+var maxstamina = 100
 var currenthealth
 var currentstamina
 var healthbar_current_value : float = 0  # For smooth health bar transitions
@@ -29,9 +30,7 @@ var staminabar_current_value : float = 0  # For smooth stamina bar transitions
 # Variables for the new leveling system
 var base_exp = 200  # Base experience multiplier for the formula
 var experience : float = 0  # Current experience
-var menubuttonamount = 0
-var menubuttonheld = false
-var menuopened = false
+
 func _ready():
 	experience += 100
 	level = 0
@@ -45,7 +44,6 @@ func exp_for_next_level(level):
 	return base_exp * ((0.5 * level * level) - (0.5 * level) + 1)
 
 func update_stamina(stamina):
-	maxstamina = Global.maxstamina
 	if stamina > maxstamina:
 		stamina = maxstamina
 	if stamina < 0:
@@ -90,9 +88,8 @@ func update_healthbar(health):
 		Global.health1 = health
 
 func update_level():
-	level = Global.level
-	if level > 250:
-		level = 250
+	if level > 100:
+		level = 100
 	if level < 0:
 		level = 0
 	leveldown = floor(level)
@@ -135,6 +132,7 @@ func update_level():
 		Global.leveldown4 = leveldown
 	else:
 		Global.leveldown1 = leveldown
+<<<<<<< HEAD
 func increase_modulate():
 	var modulate_color = menupanel.modulate
 	modulate_color.a = 0.882  # Set alpha to 225 (225/255 = 0.882)
@@ -142,7 +140,6 @@ func increase_modulate():
 func decrease_modulate():
 	var modulate_color = menupanel.modulate
 	modulate_color.a = 0  # Set alpha to 0 (fully transparent)
-	menupanel.modulate = modulate_color
 func menubuttonpressed():
 	# Check if any of the menu buttons are pressed
 	if menu_button_1.button_pressed or menu_button_2.button_pressed or menu_button_3.button_pressed or Input.is_action_pressed("menu"):
@@ -163,27 +160,21 @@ func menubuttonpressed():
 			menubuttonheld = true  # Set the button held flag
 	else:
 		menubuttonheld = false  # Reset the button held flag when not pressed
+=======
+
+>>>>>>> parent of 6f50b2d (Added menu button, added menu, fixed character selection)
 func _process(delta):
-	if !Input.is_action_pressed("moveoff") and menuopened == false:
-		Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
-	elif menuopened == true:
-		Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
-	elif Input.is_action_pressed("moveoff"):
-		Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
 	stamina = Global.stamina
 	health = Global.health
 	# Increase experience over time (for testing)
-	experience += 20000000000000000 * delta  # Gain experience per second
+	experience += 200 * delta  # Gain experience per second
 	# Test health increase
-	if Global.regenerate == true:
-		health = (Global.health + 0.01) + (Global.leveldown / 250)
-		stamina = Global.stamina + 0.1 + (Global.leveldown / 2500)
-
+	health = Global.health + 0.01 
+	stamina = Global.stamina + 0.1
 	# Update level and health display
 	update_level()
 	update_healthbar(health)
 	update_stamina(stamina)
-	menubuttonpressed()
 	if leveltext.size != lastsize:
 		levelbackgroundleft.size = leveltext.size + Vector2(20, 68)
 		lastsize = leveltext.size
