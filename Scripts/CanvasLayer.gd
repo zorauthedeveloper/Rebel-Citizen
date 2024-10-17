@@ -1,6 +1,6 @@
 extends CanvasLayer
 var tween : Tween
-@onready var menupanel = $Control/Menu/Panel
+@onready var menupanel = $Control/Menu/HBoxContainer/Panel
 @onready var container = $Control
 @onready var healthbar = $Control/HealthHUD/HealthContainer/HealthBar
 @onready var levelbar =$Control/LevelHUD/LevelContainerRight/LevelController/Panel2/LevelContainer2/LevelBar
@@ -32,6 +32,8 @@ var experience : float = 0  # Current experience
 var menubuttonamount = 0
 var menubuttonheld = false
 var menuopened = false
+@onready var selectedcharlabel = $Control/HealthHUD/CharacterCardContainer/CharacterCard/Label
+
 func _ready():
 	experience += 100
 	level = 0
@@ -85,7 +87,7 @@ func update_healthbar(health):
 	elif Global.selectedcharacter == 3:
 		Global.health3 = health
 	elif Global.selectedcharacter == 4:
-		Global.health2 = health
+		Global.health4 = health
 	else:
 		Global.health1 = health
 
@@ -163,6 +165,19 @@ func menubuttonpressed():
 			menubuttonheld = true  # Set the button held flag
 	else:
 		menubuttonheld = false  # Reset the button held flag when not pressed
+func cyclecharacters():
+	if Input.is_action_pressed("char1"):
+		Global.selectedcharacter = 1
+		selectedcharlabel.text = "1"
+	elif Input.is_action_pressed("char2"):
+		Global.selectedcharacter = 2
+		selectedcharlabel.text = "2"
+	elif Input.is_action_pressed("char3"):
+		Global.selectedcharacter = 3
+		selectedcharlabel.text = "3"
+	elif Input.is_action_pressed("char4"):
+		Global.selectedcharacter = 4
+		selectedcharlabel.text = "4"
 func _process(delta):
 	if !Input.is_action_pressed("moveoff") and menuopened == false:
 		Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
@@ -184,6 +199,7 @@ func _process(delta):
 	update_healthbar(health)
 	update_stamina(stamina)
 	menubuttonpressed()
+	cyclecharacters()
 	if leveltext.size != lastsize:
 		levelbackgroundleft.size = leveltext.size + Vector2(20, 68)
 		lastsize = leveltext.size
